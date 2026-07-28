@@ -25,7 +25,7 @@ sudo apt update && sudo apt install lynis -y
 
 A ferramenta Lynis foi instalada com sucesso através do gestor de pacotes APT.
 
-![Instalação do Lynis](imagens/instalacao-lynis.png)
+![Instalação do Lynis](images/instalacao-lynis.png)
 
 ---
 
@@ -39,7 +39,7 @@ sudo lynis audit system
 
 Foi executada uma auditoria completa ao sistema operativo para identificar configurações inseguras e recomendações de hardening.
 
-![Execução da auditoria](imagens/auditoria-lynis.png)
+![Execução da auditoria](images/auditoria-lynis.png)
 
 ---
 
@@ -59,7 +59,7 @@ Também foi possível verificar:
 - Ausência de scanner de malware instalado;
 - Execução da auditoria em modo **Normal**.
 
-![Resultado da auditoria](imagens/resultado-auditoria-lynis.png)
+![Resultado da auditoria](images/resultado-auditoria-lynis.png)
 
 ---
 
@@ -99,7 +99,7 @@ cat /var/log/lynis-report.dat
 
 Este ficheiro contém informações detalhadas sobre os testes executados, sugestões de melhoria e configurações analisadas.
 
-![Relatório do Lynis](imagens/lynis-report.png)
+![Relatório do Lynis](images/lynis-report.png)
 
 ---
 
