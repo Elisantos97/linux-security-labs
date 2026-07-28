@@ -94,6 +94,10 @@ Foi identificado um login com sucesso para o utilizador **teste3**.
 
 ---
 
+![Output do comando ss -tuln](images/analise-auth-log.png)
+
+---
+
 # Aprendizagens
 
 Durante este laboratório pratiquei:
