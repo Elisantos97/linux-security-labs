@@ -69,7 +69,7 @@ ss -tuln
 | 323 | NTP (Chrony) |
 | 8443 | Aplicação UDP |
 
-> Inserir captura de ecrã do comando `ss -tuln`.
+![Output do comando ss -tuln](images/ss-tuln_2.png)
 
 ---
 
