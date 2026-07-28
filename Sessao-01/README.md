@@ -32,7 +32,7 @@ Interface principal:
 - **ens5**
 - **Endereço IP:** `10.130.146.10/18`
 
-> Inserir captura de ecrã do comando `ip a`.
+![Output do comando ip a](images/ip-a.png)
 
 ---
 
@@ -99,7 +99,7 @@ nmap -sV -sC 10.130.149.136
 - Certificado SSL identificado no serviço RDP.
 - Nome do computador remoto: **WIN-SCAN**.
 
-> Inserir captura de ecrã do resultado do Nmap.
+![Resultado do Nmap](images/nmap.png)
 
 ---
 
