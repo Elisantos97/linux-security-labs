@@ -3,7 +3,7 @@
 
 ## Objetivo
 
-O objetivo deste laboratório foi realizar uma auditoria de segurança a um sistema Linux, identificar configurações inseguras, aplicar medidas de contenção e remediação, e validar a melhoria da postura de segurança utilizando a ferramenta Lynis. :contentReference[oaicite:0]{index=0}
+O objetivo deste laboratório foi realizar uma auditoria de segurança a um sistema Linux, identificar configurações inseguras, aplicar medidas de contenção e remediação, e validar a melhoria da postura de segurança utilizando a ferramenta Lynis.
 
 ---
 
@@ -158,4 +158,4 @@ Durante este laboratório foi possível praticar:
 
 # Conclusão
 
-Este laboratório permitiu integrar conhecimentos de administração Linux e cibersegurança, realizando uma auditoria completa ao sistema, aplicando medidas de contenção e remediação e validando a melhoria da postura de segurança através de ferramentas de análise e hardening. :contentReference[oaicite:1]{index=1}
+Este laboratório permitiu integrar conhecimentos de administração Linux e cibersegurança, realizando uma auditoria completa ao sistema, aplicando medidas de contenção e remediação e validando a melhoria da postura de segurança através de ferramentas de análise e hardening.
