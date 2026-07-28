@@ -1,46 +1,112 @@
+# Sessão 02 – Auditoria de Sistemas Linux e Análise Avançada de Logs
 
-Análise de Logs SSH no Linux
+## Objetivo
 
-Objetivo
+O objetivo deste laboratório foi analisar os registos de autenticação do sistema Linux para identificar tentativas de acesso falhadas, determinar a origem das ligações e verificar se ocorreu um acesso bem-sucedido.
 
-O objetivo deste laboratório foi compreender como o Linux regista eventos de autenticação SSH e aprender a identificar tentativas de acesso falhadas e bem-sucedidas através da análise de logs.
+---
 
+## Ambiente
 
-Atividades Realizadas
-1. Criação de utilizadores de teste
+- Plataforma: KillerCoda
+- Sistema Operativo: Ubuntu 24.04
+- Ferramentas utilizadas:
+  - grep
+  - awk
+  - sort
+  - uniq
 
-Foram criados utilizadores para simular tentativas de autenticação SSH.
+---
 
+# Preparação do Laboratório
+
+Para gerar eventos de autenticação, foram criados utilizadores locais e realizados vários testes de login através de SSH.
+
+## Comandos utilizados
+
+```bash
 useradd -m teste
-useradd -m teste3
-passwd teste3
-
-2. Simulação de tentativas de login
-
-Foram efetuadas várias tentativas de ligação SSH utilizando palavras-passe incorretas para gerar eventos de autenticação falhada.
-
+passwd teste
 ssh teste@localhost
-ssh teste2@localhost
-ssh teste3@localhost
+```
 
+Após várias tentativas com credenciais incorretas, foi efetuado um login com sucesso.
 
-3. Monitorização do ficheiro de logs
+![Output do comando ss -tuln](images/autenticacao-ssh.png)
 
-Foi utilizado o seguinte comando para acompanhar os eventos de autenticação em tempo real:
+---
 
-tail -f /var/log/auth.log
+# Análise de Tentativas Falhadas
 
+## Comando
 
-4. Identificação de autenticações falhadas
+```bash
+grep "Failed password" auth.log
+```
 
-grep "Failed password" /var/log/auth.log
+Este comando permitiu identificar todas as tentativas de autenticação falhadas registadas no sistema.
 
+### Contagem das tentativas
 
-5. Identificação de autenticações bem-sucedidas
+```bash
+grep "Failed password" auth.log | awk '{print $11}' | sort | uniq -c | sort -nr
+```
 
-grep -E "Accepted password|Accepted publickey" /var/log/auth.log
+Resultado obtido:
 
+| Origem | Número de tentativas |
+|--------|---------------------:|
+| 127.0.0.1 | 4 |
 
-6. Utilização de grep, awk, sort e uniq
+---
 
-grep "Failed password" /var/log/auth.log | awk '{print $11}' | sort | uniq -c | sort -nr
+# Identificação de Logins Bem-sucedidos
+
+## Comando
+
+```bash
+grep -E "Accepted password|Accepted publickey" auth.log
+```
+
+Foi identificado um login com sucesso para o utilizador **teste3**.
+
+---
+
+# Resultados Obtidos
+
+| Informação | Resultado |
+|------------|-----------|
+| Origem das ligações | 127.0.0.1 |
+| Utilizador afetado | teste3 |
+| Tipo de autenticação | Password |
+| Estado final | Login bem-sucedido |
+
+---
+
+# Linha Temporal
+
+| Hora | Evento |
+|------|--------|
+| 23:16:09 | Primeira tentativa falhada |
+| 23:16:11 | Nova tentativa falhada |
+| 23:16:14 | Login efetuado com sucesso |
+| 23:16:25 | Sessão SSH terminada |
+
+---
+
+# Aprendizagens
+
+Durante este laboratório pratiquei:
+
+- Análise do ficheiro `auth.log`;
+- Pesquisa de eventos utilizando `grep`;
+- Contagem de ocorrências com `awk`, `sort` e `uniq`;
+- Identificação de tentativas falhadas de autenticação;
+- Identificação de logins bem-sucedidos;
+- Construção de uma linha temporal baseada em logs.
+
+---
+
+# Conclusão
+
+Este laboratório permitiu compreender como os ficheiros de log podem ser utilizados para identificar tentativas de acesso não autorizadas, confirmar logins bem-sucedidos e reconstruir a sequência de eventos ocorridos durante uma investigação forense. :contentReference[oaicite:2]{index=2}
