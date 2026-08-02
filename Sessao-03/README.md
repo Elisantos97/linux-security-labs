@@ -1,12 +1,12 @@
-Sessão 03 — Hardening de Redes Linux e Configuração de Firewalls
+# Sessão 03 — Hardening de Redes Linux e Configuração de Firewalls
 
-Objetivo
+## Objetivo
 
 O objetivo deste laboratório foi aplicar uma política defensiva num
 sistema Linux utilizando o UFW e o iptables, bloqueando ligações de
 entrada não autorizadas e permitindo apenas o acesso SSH pela porta 22.
 
-Ambiente
+## Ambiente
 
 -   Plataforma: KillerCoda Ubuntu Playground
 -   Sistema Operativo: Ubuntu 24.04
@@ -15,71 +15,89 @@ Ambiente
     -   iptables
     -   iptables-save
 
-Atividades Realizadas
+## Atividades Realizadas
 
-1. Verificação do estado do UFW
+### 1. Verificação do estado do UFW
 
-Comando:
+**Comando:**
 
-    sudo ufw status
+```bash
+sudo ufw status
+```
 
-Resultado observado:
+**Resultado observado:**
 
-    Status: inactive
+```text
+Status: inactive
+```
 
 Verificou-se que o UFW estava instalado, mas ainda não se encontrava
 ativo.
 
 Para ativar foi utilizado o comando:
 
-    sudo ufw enable
+```bash
+sudo ufw enable
+```
 
-
-2. Configuração das políticas padrão
+### 2. Configuração das políticas padrão
 
 Foram aplicadas as seguintes políticas:
 
-    sudo ufw default deny incoming
-    sudo ufw default allow outgoing
+```bash
+sudo ufw default deny incoming
+sudo ufw default allow outgoing
+```
 
 Estas regras bloqueiam todas as ligações de entrada por defeito e
 permitem o tráfego de saída.
 
-3. Permissão do acesso SSH
+### 3. Permissão do acesso SSH
 
 Foi criada uma regra para permitir apenas ligações SSH na porta TCP 22.
 
-    sudo ufw allow 22/tcp
+```bash
+sudo ufw allow 22/tcp
+```
 
-4. Simulação de bloqueio de um IP malicioso
+### 4. Simulação de bloqueio de um IP malicioso
 
 Foi adicionada uma regra ao iptables para bloquear o endereço IP
 fictício:
 
+```text
     203.0.113.50
+```
 
 Comando utilizado:
 
-    sudo iptables -A INPUT -s 203.0.113.50 -j DROP
+```bash
+sudo iptables -A INPUT -s 203.0.113.50 -j DROP
+```
 
-5. Verificação das regras
+
+### 5. Verificação das regras
 
 Foram utilizados os comandos:
 
-    sudo ufw status verbose
-    sudo iptables -L -v
+```bash
+sudo ufw status verbose
+sudo iptables -L -v
+```
 
 A regra criada apareceu na chain INPUT, indicando que qualquer tráfego
 proveniente do IP 203.0.113.50 seria descartado.
 
-6. Persistência das regras
+### 6. Persistência das regras
 
 Foi tentado guardar o estado do iptables utilizando:
 
-    sudo iptables-save | sudo tee /etc/iptables/rules.v4
+```bash
+sudo iptables-save | sudo tee /etc/iptables/rules.v4
+```
 
 
-Política Aplicada
+## Política Aplicada
 
 A política implementada segue o princípio de “negar por defeito”.
 
@@ -88,7 +106,7 @@ A política implementada segue o princípio de “negar por defeito”.
 -   Permitir apenas SSH na porta 22.
 -   Bloquear o IP fictício 203.0.113.50.
 
-Competências Desenvolvidas
+## Competências Desenvolvidas
 
 -   Configuração de UFW
 -   Configuração de iptables
@@ -99,7 +117,7 @@ Competências Desenvolvidas
 
 
 
-Conclusão
+## Conclusão
 
 Este laboratório permitiu compreender como configurar uma firewall em
 Linux utilizando UFW e iptables. Foram aplicadas regras de segurança
